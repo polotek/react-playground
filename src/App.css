@@ -52,12 +52,12 @@
   float: left;
   font-size: 24px;
   line-height: 34px;
-  height: 34px;
+  min-height: 34px;
+  min-width: 34px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
 }
 .square.latest {
   font-weight: bold;
@@ -69,14 +69,25 @@
 .game {
   background-color: #61DAFB;
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
 }
-
+.game > * {
+  padding: 0 2em 2em 0;
+}
+.game h1 {
+  flex-basis: 100%;
+  padding: 0;
+}
+.game-board {
+  padding-bottom: 0;
+}
 .game-info {
-  margin-left: 20px;
+  /* padding: 0 2em; */
 }
 
-
+.board-row {
+  display: flex;
+}
 .game-info .latest button {
   font-weight: bold;
 }
