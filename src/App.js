@@ -3,26 +3,16 @@ import classNames from 'classnames';
 import logo from './logo.svg';
 import './App.css';
 
-function Square(props) {
-  return (
-    <button className={`square ${props.className}`}
-            onClick={props.onClick}>
-      {props.value}
-    </button>
-  );
-}
-
 class Board extends React.Component {
   renderSquare(i) {
     const winner = this.props.winner;
-    let isWinner = winner && winner.line.includes(i)
+    const isWinner = winner && winner.line.includes(i)
+    const mark = this.props.squares[i]
     return (
-      <Square
-        key={"key"+i}
-        value={this.props.squares[i]}
-        className={classNames({'latest': this.props.pos === i, 'winner':isWinner})}
-        onClick={() => this.props.onClick(i)}
-      />
+      <button key={'key'+i} className={classNames('square', {'latest': this.props.pos === i, 'winner':isWinner})}
+              onClick={() => this.props.onClick(i)}>
+        {mark}
+      </button>
     );
   }
 
@@ -34,7 +24,7 @@ class Board extends React.Component {
         let pos = i*3+j;
         cols.push(this.renderSquare(pos));
       }
-      rows.push(<div key={"key"+i} className="board-row">{cols}</div>);
+      rows.push(<div key={'key'+i} className="board-row">{cols}</div>);
     }
     return (
       <div>{rows}</div>
